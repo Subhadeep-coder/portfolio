@@ -159,7 +159,7 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
                 </div>
 
                 {/* Links */}
-                {project.links.length > 0 && (
+                {project.links && project.links.length > 0 && (
                   <div className="font-mono text-xs sm:text-sm">
                     <div className="text-yellow-400 mb-2">// Links:</div>
                     <div className="flex flex-wrap gap-1 sm:gap-2">
@@ -248,7 +248,7 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
                     </div>
 
                     {/* Links */}
-                    {project.links.length > 0 && (
+                    {project.links && project.links.length > 0 && (
                       <div className="font-mono text-xs sm:text-sm">
                         <div className="text-yellow-400 mb-2">// Access:</div>
                         <div className="flex flex-wrap gap-1 sm:gap-2">
