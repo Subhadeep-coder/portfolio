@@ -1,3 +1,6 @@
+"use client";
+
+import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -22,6 +25,45 @@ interface ContactSectionProps {
 }
 
 export function ContactSection({ personal }: ContactSectionProps) {
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState("");
+  const [error, setError] = useState("");
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setLoading(true);
+    setSuccess("");
+    setError("");
+    try {
+      const res = await fetch("/api/mail", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      const data = await res.json();
+      if (res.ok) {
+        setSuccess(data.message || "Message sent successfully!");
+        setForm({ name: "", email: "", subject: "", message: "" });
+      } else {
+        setError(data.message || "Failed to send message.");
+      }
+    } catch (err) {
+      setError("Failed to send message.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <section id="contact" className="py-16 sm:py-20 bg-gray-950 text-white">
       <div className="container mx-auto px-4">
@@ -105,40 +147,62 @@ export function ContactSection({ personal }: ContactSectionProps) {
               </CardDescription>
             </CardHeader>
             <CardContent className="p-4 sm:p-6 pt-0">
-              <form className="space-y-3 sm:space-y-4">
+              <form className="space-y-3 sm:space-y-4" onSubmit={handleSubmit}>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                   <div>
                     <Input
+                      name="name"
+                      value={form.name}
+                      onChange={handleChange}
                       placeholder="Your Name"
                       className="bg-gray-800 border-gray-600 text-white placeholder:text-gray-400 font-mono text-sm"
+                      required
                     />
                   </div>
                   <div>
                     <Input
+                      name="email"
                       type="email"
+                      value={form.email}
+                      onChange={handleChange}
                       placeholder="Your Email"
                       className="bg-gray-800 border-gray-600 text-white placeholder:text-gray-400 font-mono text-sm"
+                      required
                     />
                   </div>
                 </div>
                 <div>
                   <Input
+                    name="subject"
+                    value={form.subject}
+                    onChange={handleChange}
                     placeholder="Subject"
                     className="bg-gray-800 border-gray-600 text-white placeholder:text-gray-400 font-mono text-sm"
                   />
                 </div>
                 <div>
                   <Textarea
+                    name="message"
+                    value={form.message}
+                    onChange={handleChange}
                     placeholder="Your Message"
                     rows={4}
                     className="bg-gray-800 border-gray-600 text-white placeholder:text-gray-400 font-mono text-sm resize-none"
+                    required
                   />
                 </div>
+                {success && (
+                  <div className="text-green-500 font-mono text-xs sm:text-sm">{success}</div>
+                )}
+                {error && (
+                  <div className="text-red-500 font-mono text-xs sm:text-sm">{error}</div>
+                )}
                 <Button
                   type="submit"
-                  className="w-full bg-green-600 hover:bg-green-700 text-black font-mono text-sm sm:text-base"
+                  className="w-full bg-green-600 hover:bg-green-700 text-black font-mono text-sm sm:text-base cursor-pointer"
+                  disabled={loading}
                 >
-                  ./send-message
+                  {loading ? "Sending..." : "./send-message"}
                 </Button>
               </form>
             </CardContent>
