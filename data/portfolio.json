@@ -17,8 +17,21 @@
     "twitter": "https://x.com/05_subhadeep"
   },
   "skills": {
-    "languages": ["JavaScript", "TypeScript", "C", "C++", "Java", "Rust"],
-    "frontend": ["React", "Next.js", "HTML5", "CSS3", "Tailwind CSS"],
+    "languages": [
+      "JavaScript",
+      "TypeScript",
+      "C",
+      "C++",
+      "Java",
+      "Rust"
+    ],
+    "frontend": [
+      "React",
+      "Next.js",
+      "HTML5",
+      "CSS3",
+      "Tailwind CSS"
+    ],
     "backend": [
       "Node.js",
       "Express",
@@ -45,21 +58,60 @@
       "position": "Backend Developer Intern",
       "duration": "2025 - Present",
       "description": "As a SDE Intern, I focused on backend development, ensuring seamless communication between the app and APIs. I refactored the codebase to improve maintainability and scalability while optimizing the execution ow for better performance.",
-      "technologies": ["Node.js", "MongoDB", "AWS", "Docker"]
+      "technologies": [
+        "Node.js",
+        "MongoDB",
+        "AWS",
+        "Docker"
+      ]
     },
     {
       "company": "BuyBox",
       "position": "Backend Developer Intern",
       "duration": "2024 - 2025",
       "description": "Worked as a Backend Developer, building a scalable system, adding critical features, and improving the UX across all platforms. Contributed to the Buybox core backend, created a scalable notication system and implemented a robust product management system.",
-      "technologies": ["Node.js", "NestJS", "MongoDB", "Cloudinary", "Redis"]
+      "technologies": [
+        "Node.js",
+        "NestJS",
+        "MongoDB",
+        "Cloudinary",
+        "Redis"
+      ]
     }
   ],
   "projects": [
     {
+      "title": "Codecoffee",
+      "description": "Built a competitive coding platform with problem creation and publishing, featuring a custom judging system that validates code submissions against open and hidden test cases for automated correct‑output verification.",
+      "image": "/codecoffee.png?height=300&width=400",
+      "technologies": [
+        "Next.js",
+        "NestJS",
+        "PostgreSQL",
+        "Tailwind CSS",
+        "Prisma",
+        "Docker"
+      ],
+      "repositories": [
+        {
+          "name": "Main Repository",
+          "url": "https://github.com/Subhadeep-coder/codecoffee"
+        }
+      ],
+      "links": [
+        {
+          "name": "Live Demo",
+          "url": "https://codecoffee1.vercel.app",
+          "type": "demo"
+        }
+      ],
+      "featured": true,
+      "order": 1
+    },
+    {
       "title": "Compify",
       "description": "Developed a comprehensive AI‑powered platform leveraging generative AI to dynamically create personalized competitive‑exam questions, deliver detailed performance analytics, and manage user authentication, dashboards, and exam tracking.",
-      "image": "/placeholder.svg?height=300&width=400",
+      "image": "/compify.png?height=300&width=400",
       "technologies": [
         "Next.js",
         "Node.js",
@@ -80,7 +132,8 @@
           "type": "demo"
         }
       ],
-      "featured": true
+      "featured": true,
+      "order": 2
     },
     {
       "title": "ScoutTalk",
@@ -107,40 +160,19 @@
           "type": "demo"
         }
       ],
-      "featured": true
-    },
-    {
-      "title": "Codecoffee",
-      "description": "Built a competitive coding platform with problem creation and publishing, featuring a custom judging system that validates code submissions against open and hidden test cases for automated correct‑output verification.",
-      "image": "/placeholder.svg?height=300&width=400",
-      "technologies": [
-        "Next.js",
-        "NestJS",
-        "PostgreSQL",
-        "Tailwind CSS",
-        "Prisma",
-        "Docker"
-      ],
-      "repositories": [
-        {
-          "name": "Main Repository",
-          "url": "https://github.com/Subhadeep-coder/codecoffee"
-        }
-      ],
-      "links": [
-        {
-          "name": "Live Demo",
-          "url": "https://codecoffee1.vercel.app",
-          "type": "demo"
-        }
-      ],
-      "featured": false
+      "featured": false,
+      "order": 3
     },
     {
       "title": "Secure Share",
       "description": "Designed a secure end‑to‑end encrypted file‑sharing system with layered AES/RSA encryption, robust key management, a user‑friendly Flutter frontend, and a high‑performance Rust backend for secure file storage.",
       "image": "/placeholder.svg?height=300&width=400",
-      "technologies": ["Flutter", "Rust", "Actix-Web", "MongoDB"],
+      "technologies": [
+        "Flutter",
+        "Rust",
+        "Actix-Web",
+        "MongoDB"
+      ],
       "repositories": [
         {
           "name": "Mobile App",
@@ -151,7 +183,8 @@
           "url": "https://github.com/Subhadeep-coder/secure-share-server"
         }
       ],
-      "featured": false
+      "featured": false,
+      "order": 4
     }
   ]
 }

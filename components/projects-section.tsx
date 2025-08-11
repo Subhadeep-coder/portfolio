@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -14,19 +16,27 @@ import {
   Download,
   Globe,
   Code2,
+  ArrowRight,
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 interface Repository {
   name: string;
   url: string;
 }
 
+// interface ProjectLink {
+//   name: string;
+//   url: string;
+//   type: "demo" | "appstore" | "playstore" | "download" | "website" | "other";
+// }
+
 interface ProjectLink {
   name: string;
   url: string;
-  type: "demo" | "appstore" | "playstore" | "download" | "website" | "other";
+  type: string;
 }
 
 interface Project {
@@ -35,8 +45,9 @@ interface Project {
   image: string;
   technologies: string[];
   repositories: Repository[];
-  links: ProjectLink[];
+  links?: ProjectLink[];
   featured: boolean;
+  order: number;
 }
 
 interface ProjectsSectionProps {
@@ -75,8 +86,13 @@ function getLinkColor(type: string) {
 }
 
 export function ProjectsSection({ projects }: ProjectsSectionProps) {
-  const featuredProjects = projects.filter((project) => project.featured);
-  const otherProjects = projects.filter((project) => !project.featured);
+  const router = useRouter();
+  const featuredProjects = projects
+    .filter((project) => project.featured)
+    .sort((a, b) => a.order - b.order);
+  const otherProjects = projects
+    .filter((project) => !project.featured)
+    .sort((a, b) => a.order - b.order);
 
   return (
     <section id="projects" className="py-16 sm:py-20 bg-gray-950 text-white">
@@ -107,6 +123,7 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
                   src={project.image || "/placeholder.svg"}
                   alt={project.title}
                   fill
+                  priority
                   className="object-cover opacity-80"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent" />
@@ -278,6 +295,16 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
             </div>
           </>
         )}
+        <div className="flex justify-center items-center pt-4">
+          <Button
+            type="button"
+            className="w-fit bg-green-600 hover:bg-green-700 text-black font-mono text-sm sm:text-base cursor-pointer"
+            onClick={() => router.push("/projects")}
+          >
+            View all Projects
+            <ArrowRight />
+          </Button>
+        </div>
       </div>
     </section>
   );
